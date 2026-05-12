@@ -9,7 +9,11 @@ fi
 
 expire_date=$(date -d "+1 year" +%Y-%m-%d)
 
-sudo useradd -m -s /bin/bash -G docker -e "$expire_date" $user
+read -p "Group to be added:" group
+
+#add conditional statement for more groups
+
+sudo useradd -m -s /bin/bash -G $group -e "$expire_date" $user
 
 if [ $? -eq 0 ]; then
   echo "Account for $user created (expires: $expire_date)."
