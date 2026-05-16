@@ -17,3 +17,6 @@ else
     echo "Error: Backup failed."
     exit 1
 fi
+
+# To view backup contents: tar -tvf backup_file.tar.gz
+# To recover files: tar -xzf backup_file.tar.gz -C /path/to/restore
