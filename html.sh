@@ -1,5 +1,5 @@
 #!/bin/bash
-OUTPUT_FILE="$HOME/bash-scripts/system_report.html"
+read -p "Desired file name: " OUTPUT_FILE
 
 # Function to generate the HTML skeleton and pull data from monitoring tools
 generate_report() {
