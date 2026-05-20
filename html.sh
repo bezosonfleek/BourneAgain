@@ -8,7 +8,7 @@ generate_report() {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>System Status Report</title>
+    <title>System Report</title>
     <style>
         body { font-family: sans-serif; margin: 30px; background-color: #f4f6f9; color: #333; }
         h1 { color: #2c3e50; border-bottom: 2px solid #2c3e50; padding-bottom: 10px; }
