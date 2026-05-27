@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# =============================================================================
+# ==============================================================================
 # ssh_key_rotation.sh
 # Rotates SSH public keys across a fleet of servers. Generates a new key pair,
 # deploys the new public key, verifies connectivity, then removes the old key.
 #
 # Usage:    ./ssh_key_rotation.sh --hosts hosts.txt --user deploy [--dry-run]
 # Requires: ssh, ssh-keygen, ssh-copy-id, parallel (optional)
-# =============================================================================
+# ==============================================================================
 
 set -euo pipefail
 
