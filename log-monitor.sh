@@ -22,7 +22,7 @@ grep "Failed password" "$file" | awk '{print$(NF-3)}' | sort | uniq -c | sort -n
 TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
 
         if [ $count -ge $threshold ]; then
-                printf "🚨 %-8s | %-16s | %-20s\n" "$count" "$ip" "BREACHED THRESHOLD"
+                printf "🚨 %-4s | %-14s | %-20s\n" "$count" "$ip" "BREACHED THRESHOLD"
                 printf "[%-19s] | IP: %-15s | FAILURES: %-4s | STATUS: BANNED\n" "$TIMESTAMP" "$ip" "$count" >> dummy/34.txt
         fi
 done
