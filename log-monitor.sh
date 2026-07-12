@@ -17,7 +17,12 @@ if [ ! -f "$LOG_FILE" ]; then
 fi
 
 echo "Scanning $LOG_FILE for brute-force patterns (Threshold: $THRESHOLD)..."
-failed=$(grep "Failed password" "$LOG_FILE")
-echo "$failed"
+grep "Failed password" "$LOG_FILE" | awk '{print $(NF-3)}' | sort | uniq -c | while read -r count ip; do
+
+	if [ $count -ge "$THRESHOLD" ]; then
+		echo "🚨 ALERT: IP $ip has breached threshold with $count failures!"
+		echo "$(date) - BANNED: $ip ($count failures)" >> dummy/banned_ips.log
+	fi
+done
 
 echo "Scan complete."
