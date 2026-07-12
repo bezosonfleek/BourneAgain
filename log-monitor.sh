@@ -3,26 +3,28 @@
 set -eou pipefail
 
 if [ "$#" -ne 2 ]; then
-	echo "Missing arguments."
-	echo "Usage: $0 <path_to_file> <failure_threshold>"
-	exit 1
+        echo "Missing variables."
+        echo "Usage $0 <file> <limit>"
+        exit 1
 fi
 
-LOG_FILE=$1
-THRESHOLD=$2
+file=$1
+threshold=$2
 
-if [ ! -f "$LOG_FILE" ]; then
-	echo "Error: File $LOG_FILE does not exist."
-	exit 1
+if [ ! -f "$file" ]; then
+        echo "Error: File $file does not exist."
+        exit 1
 fi
 
-echo "Scanning $LOG_FILE for brute-force patterns (Threshold: $THRESHOLD)..."
-grep "Failed password" "$LOG_FILE" | awk '{print $(NF-3)}' | sort | uniq -c | while read -r count ip; do
+echo "Scanning $file for brute-force patterns (Threshold $threshold)..."
+grep "Failed password" "$file" | awk '{print$(NF-3)}' | sort | uniq -c | sort -nr | while read -r count ip; do
 
-	if [ $count -ge "$THRESHOLD" ]; then
-		echo "🚨 ALERT: IP $ip has breached threshold with $count failures!"
-		echo "$(date) - BANNED: $ip ($count failures)" >> dummy/banned_ips.log
-	fi
+TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
+
+        if [ $count -ge $threshold ]; then
+                printf "🚨 %-8s | %-16s | %-20s\n" "$count" "$ip" "BREACHED THRESHOLD"
+                printf "[%-19s] | IP: %-15s | FAILURES: %-4s | STATUS: BANNED\n" "$TIMESTAMP" "$ip" "$count" >> dummy/34.txt
+        fi
 done
 
 echo "Scan complete."
