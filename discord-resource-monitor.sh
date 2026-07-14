@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
 
+set -eo pipefail
+
 if [ -f "/home/bezos/.env" ]; then
     source "/home/bezos/.env"
+fi
+
+if [ -z "$discord_webhook" ]; then
+    echo "Error: discord_webhook is not set. Check your /home/bezos/.env file." >&2
+    exit 1
 fi
 
 threshold=65
