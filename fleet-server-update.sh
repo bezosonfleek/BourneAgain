@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
-servers=("122.99.67.45" "165.43.43.54" "53.21.54.69") #add to .env to avoid hardocding
+
+if [ -f "/home/bezos/.env" ]; then
+    source "/home/bezos/.env"
+fi
+
+servers="$servers"
 echo "${servers[@]}"
 
 user="bezos"
