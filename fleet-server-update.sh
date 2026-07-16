@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-servers=("192.168.1.2" "192.168.1.3" "192.168.1.4")
+servers=("122.99.67.45" "165.43.43.54" "53.21.54.69") #add to .env to avoid hardocding
 echo "${servers[@]}"
 
 user="bezos"
