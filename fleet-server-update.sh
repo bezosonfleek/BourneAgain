@@ -10,7 +10,6 @@ echo
 
 #echo -e "List of servers:\n$(printf '%s\n' "${servers[@]}")"
 
-ssh_key=/home/bezos/bash-scripts/essentials/fleet-svr-key.pem
 failed_servers=()
 
 for server in "${servers[@]}"; do
