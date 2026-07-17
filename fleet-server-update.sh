@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 if [ -f "/home/bezos/.env" ]; then
     source "/home/bezos/.env"
 fi
