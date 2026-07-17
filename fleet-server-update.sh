@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+#create a dot env file and define servers (array), user & ssh_key (path)
+
 if [ -f "/home/bezos/.env" ]; then
     source "/home/bezos/.env"
 fi
