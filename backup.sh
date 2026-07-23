@@ -15,10 +15,12 @@ fi
 # Create backup directory if it doesn't exist
 [[ ! -d "$backup_dest" ]] && mkdir -p "$backup_dest"
 
-echo "Starting backup of $source_dir..."
+# Destination check to be added...
 
-if tar -czf "$backup_dest/$file_name" "$source_dir" 2>/dev/null; then
-    echo "Backup successful: $backup_dest/$file_name"
+echo "🔄 Starting backup of $source_dir..."
+
+if tar -czf "$backup_dest/$file_name" "$source_dir"; then
+    echo "✅ Backup successful: $backup_dest/$file_name"
     echo "Size: $(du -h "$backup_dest/$file_name" | cut -f1)"
 else
     echo "Error: Backup failed."
