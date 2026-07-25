@@ -10,9 +10,10 @@ set -euo pipefail
 
 # Configuration: Define your network nodes or lab IPs here
 TARGET_IPS=(
-    "192.168.1.1"
-    "192.168.1.5"
-    "192.168.1.50"
+    "192.168.0.1"
+    "192.168.0.5"
+    "192.168.0.28"
+    "192.168.0.215"
     "8.8.8.8"
     "1.1.1.1"
 )
