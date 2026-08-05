@@ -1,16 +1,20 @@
 #!/bin/bash
-# filelock--A flexible file-locking mechanism
+
+# filelock.sh --A flexible file-locking mechanism
+
 retries="10" # Default number of retries
 action="lock" # Default action
 nullcmd="'which true'" # Null command for lockfile
- while getopts "lur:" opt; do
+
+while getopts "lur:" opt; do
  case $opt in
  l ) action="lock" ;;
  u ) action="unlock" ;;
  r ) retries="$OPTARG" ;;
  esac
 done
- shift $(($OPTIND - 1))
+shift $(($OPTIND - 1))
+
 if [ $# -eq 0 ] ; then # Output a multiline error message to stdout.
  cat << EOF >&2
 Usage: $0 [-l|-u] [-r retries] LOCKFILE
@@ -19,12 +23,14 @@ specifies a max number of retries before it fails (default = $retries).
  EOF
  exit 1
 fi
+
 # Ascertain if we have the lockfile command.
- if [ -z "$(which lockfile | grep -v '^no ')" ] ; then
+
+if [ -z "$(which lockfile | grep -v '^no ')" ] ; then
  echo "$0 failed: 'lockfile' utility not found in PATH." >&2
  exit 1
 fi
- if [ "$action" = "lock" ] ; then
+if [ "$action" = "lock" ] ; then
  if ! lockfile -1 -r $retries "$1" 2> /dev/null; then
  echo "$0: Failed: Couldn't create lockfile in time." >&2
  exit 1
@@ -36,4 +42,5 @@ else # Action = unlock.
  fi
  rm -f "$1"
 fi
+
 exit 0
