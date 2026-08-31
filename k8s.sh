@@ -6,6 +6,7 @@ kctl="microk8s.kubectl"
 command -v fzf >/dev/null || { echo "fzf is required" >&2; exit 1; }
 
 read -rp "Choose action (get/logs): " action
+
 read -rp "Namespace: " namespace
 namespace="${namespace:-default}"
 
